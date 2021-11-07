@@ -7,7 +7,7 @@ public class ContactDoctor {
     private String SubjectTitle;
     private String Message;
 
-    //Fuction stores the message, and sends it to the doctor
+    //Function stores the message, and sends it to the doctor
     ContactDoctor(String PatientName){
         this.PatientName = PatientName;
     }

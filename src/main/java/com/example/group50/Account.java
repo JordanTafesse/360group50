@@ -9,6 +9,16 @@ public class Account {
     private String Password;
     private int Permission;
 //
+    //CONSTRUCTOR
+    Account(String FirstName, String LastName, String Email, String Username, String DateOfBirth, String Password, int Permission){
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Email = Email;
+        this.Username = Username;
+        this.DateOfBirth = DateOfBirth;
+        this.Password = Password;
+        this.Permission = Permission;
+    }
     public void SetName(String FirstName, String LastName){
         this.FirstName = this.LastName;
     }
