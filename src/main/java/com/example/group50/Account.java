@@ -8,7 +8,7 @@ public class Account {
     private String DateOfBirth;
     private String Password;
     private int Permission;
-
+//
     public void SetName(String FirstName, String LastName){
         this.FirstName = this.LastName;
     }
