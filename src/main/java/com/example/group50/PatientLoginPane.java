@@ -1,31 +1,5 @@
 package com.example.group50;
 
-//public class PatientLoginPane {
-    /*
-     * Joshua Ballecer, Shawn Mian, Jadon O'Neil, Jordan Tafesse, Patrick Walker Jauregui
-     * Group 50
-     * CSE 360 Tuesday 9:00-10:15
-     * Description:
-     *
-     * 		This class will display the JavaFX window containing all of the elements for
-     * 		the Patient Login page. It will create a PatientLoginPane that will be created
-     * 		in the PatientLoginPane.java class.
-     */
-
-    /*
-     * Joshua Ballecer, Shawn Mian, Jadon O'Neil, Jordan Tafesse, Patrick Walker Jauregui
-     * Group 50
-     * CSE 360 Tuesday 9:00-10:15
-     * Description:
-     * 		This class will create a PatientLoginPane that a patient will
-     * 		use to log in. They will need a username and password to do this.
-     * 		A new patient may also create an account through this with the
-     * 		create account functionality.
-     *
-     */
-
-//package PhaseII;
-
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,66 +7,90 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
-    public class PatientLoginPane extends HBox
+public class PatientLoginPane extends HBox
+{
+
+    private Label welcomeLabel;	// Displays login text
+    private Label loginLabel;
+
+    private TextField usernameTextField;
+    private Label userLabel;
+
+    private TextField passwordTextField;
+    private Label passLabel;
+
+    private Button loginButton;		// Patient will click this to log in
+    private Button createAccountButton;
+
+    public PatientLoginPane()
     {
+        welcomeLabel = new Label();
+        welcomeLabel.setText("Welcome Patient");
+        welcomeLabel.setFont(Font.font(32));
 
-        private Label welcomeLabel;	// Displays login text
-        private Label loginLabel;
+        loginLabel = new Label();
+        loginLabel.setText("User Login");
 
-        private TextField usernameTextField;
-        private Label userLabel;
+        HBox userBox = new HBox();
+        usernameTextField = new TextField();
+        userLabel = new Label();
+        userLabel.setText("Username: ");
+        userBox.getChildren().addAll(userLabel, usernameTextField);
+        userBox.setAlignment(Pos.CENTER);
 
-        private TextField passwordTextField;
-        private Label passLabel;
+        HBox passBox = new HBox();
+        passwordTextField = new TextField();
+        passLabel = new Label();
+        passLabel.setText(" Password: ");
+        passBox.getChildren().addAll(passLabel, passwordTextField);
+        passBox.setAlignment(Pos.CENTER);
 
-        private Button loginButton;		// Patient will click this to log in
-        private Button createAccountButton;
+        VBox loginBox = new VBox(); // VBox that contains both username and password elements to add to the gridpane
+        loginBox.getChildren().addAll(userBox, passBox);
 
-        public PatientLoginPane()
-        {
-            welcomeLabel = new Label();
-            welcomeLabel.setText("Welcome Patient");
+        loginButton = new Button();
+        loginButton.setText("Sign in");
+        loginButton.setPrefWidth(180);
 
-            loginLabel = new Label();
-            loginLabel.setText("User Login");
+        createAccountButton = new Button();
+        createAccountButton.setText("Create an account");
+        createAccountButton.setPrefWidth(180);
 
-            HBox userBox = new HBox();
-            usernameTextField = new TextField();
-            userLabel = new Label();
-            userLabel.setText("Username: ");
-            userBox.getChildren().addAll(userLabel, usernameTextField);
+        //============JORDAN GETTING STRINGS
+        loginButton.setOnAction(e -> {
+                    String user = String.valueOf(userLabel.getText());
+                    String pass = String.valueOf(passLabel.getText());
 
-            HBox passBox = new HBox();
-            passwordTextField = new TextField();
-            passLabel = new Label();
-            passLabel.setText("Password: ");
-            passBox.getChildren().addAll(passLabel, passwordTextField);
+                    //IF USER AND PASSWORD IS FOUND IN THE DATABASE (needs to be implemented)
+                    //patient. needs to be replaced with a function that sorts through the database.
+            /*if((user.equals(patient.) == 0)  && (pass.equals(patient.) == 0)){
 
-            VBox loginBox = new VBox(); // VBox that contains both username and password elements to add to the gridpane
-            loginBox.getChildren().addAll(userBox, passBox);
+            }
+            */
+                });
 
-            loginButton = new Button();
-            loginButton.setText("Sign in");
+        //GO TO CREATE ACCOUNT PANE ONCE PRESSED
+        createAccountButton.setOnAction(e -> {
 
-            createAccountButton = new Button();
-            createAccountButton.setText("Create an account");
 
-            HBox buttonHBox = new HBox(); // HBox that contains all button elements
-            buttonHBox.getChildren().addAll(loginButton, createAccountButton);
 
-            GridPane patientGrid = new GridPane();
-            patientGrid.add(welcomeLabel, 1, 0);
-            patientGrid.add(loginBox, 1, 1);
-            patientGrid.add(buttonHBox, 1, 2);
-            patientGrid.setHgap(10);
-            patientGrid.setVgap(20);
-            patientGrid.setAlignment(Pos.CENTER);
+                });
+            //==============================================
 
-            this.getChildren().addAll(patientGrid);
-        }
+        HBox buttonHBox = new HBox(); // HBox that contains all button elements
+        buttonHBox.getChildren().addAll(loginButton, createAccountButton);
+        buttonHBox.setSpacing(75);
 
+        VBox patientGrid = new VBox();
+        patientGrid.getChildren().add(welcomeLabel);
+        patientGrid.getChildren().add(loginBox);
+        patientGrid.getChildren().add(buttonHBox);
+        patientGrid.setAlignment(Pos.CENTER);
+        patientGrid.setSpacing(50);
+
+        this.getChildren().addAll(patientGrid);
     }
 
-
-//}
+}
