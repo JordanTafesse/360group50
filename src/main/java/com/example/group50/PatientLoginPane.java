@@ -9,9 +9,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//import static com.example.group50.CSVReaderWriter.readCsv;
+
 public class PatientLoginPane extends HBox
 {
-
     private Label welcomeLabel;	// Displays login text
     private Label loginLabel;
 
@@ -59,16 +63,27 @@ public class PatientLoginPane extends HBox
         createAccountButton.setPrefWidth(180);
 
         //============JORDAN GETTING STRINGS
+        String filePath = "/Users/jordan/Desktop/project50/user.csv";
+
         loginButton.setOnAction(e -> {
                     String user = String.valueOf(userLabel.getText());
                     String pass = String.valueOf(passLabel.getText());
 
                     //IF USER AND PASSWORD IS FOUND IN THE DATABASE (needs to be implemented)
                     //patient. needs to be replaced with a function that sorts through the database.
-            /*if((user.equals(patient.) == 0)  && (pass.equals(patient.) == 0)){
-
+            List<User> users = new ArrayList<User>();
+            //can't figure out how to call readCsv to return the arraylist and set it = to users.
+            //We need to do this in order to compare the read list to the user/password provided in the textbox.
+            /*
+            users.readCsv(filePath);
+            for(User u: users ) {
+                if ((user.equals(u.getUsername()) == 0) && (pass.equals(u.getPassword()) == 0)) {
+                    //CONTINUE TO NEXT PANE
+                }
             }
             */
+            System.out.println("ERROR, Username or Password not found");
+            //ADD PRINT TO THE PANE
                 });
 
         //GO TO CREATE ACCOUNT PANE ONCE PRESSED
