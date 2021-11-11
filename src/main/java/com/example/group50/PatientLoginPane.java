@@ -16,6 +16,9 @@ import java.util.List;
 
 public class PatientLoginPane extends HBox
 {
+    //NEEDS TO BE INCLUDED TO READ .csv
+    private CSVReaderWriter read;
+
     private Label welcomeLabel;	// Displays login text
     private Label loginLabel;
 
@@ -66,22 +69,29 @@ public class PatientLoginPane extends HBox
         String filePath = "/Users/jordan/Desktop/project50/user.csv";
 
         loginButton.setOnAction(e -> {
-                    String user = String.valueOf(userLabel.getText());
-                    String pass = String.valueOf(passLabel.getText());
-
+                    String user = String.valueOf(usernameTextField.getText());
+                    //System.out.println("input " + user);
+                    String pass = String.valueOf(passwordTextField.getText());
+                    //System.out.println("input " + pass);
                     //IF USER AND PASSWORD IS FOUND IN THE DATABASE (needs to be implemented)
                     //patient. needs to be replaced with a function that sorts through the database.
+
+            //CREATE AN OBJECT FOR THE LIST
+            //THIS IS HOW WE CALL THE LIST TO BE READ FROM .csv FILE
             List<User> users = new ArrayList<User>();
-            //can't figure out how to call readCsv to return the arraylist and set it = to users.
-            //We need to do this in order to compare the read list to the user/password provided in the textbox.
-            /*
-            users.readCsv(filePath);
+
+            read = new CSVReaderWriter();
+            users = read.readCsv(filePath);
+
             for(User u: users ) {
-                if ((user.equals(u.getUsername()) == 0) && (pass.equals(u.getPassword()) == 0)) {
-                    //CONTINUE TO NEXT PANE
+                if ((user.equals(u.getUsername()) == true) && (pass.equals(u.getPassword()) == true)) {
+                    //System.out.println("YUPPERS");
+                    //cut the loop, CONTINUE TO NEXT PANE
+
                 }
             }
-            */
+
+
             System.out.println("ERROR, Username or Password not found");
             //ADD PRINT TO THE PANE
                 });
@@ -89,7 +99,7 @@ public class PatientLoginPane extends HBox
         //GO TO CREATE ACCOUNT PANE ONCE PRESSED
         createAccountButton.setOnAction(e -> {
 
-
+            System.out.println("add this josh");
 
                 });
             //==============================================

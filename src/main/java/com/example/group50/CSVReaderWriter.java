@@ -16,6 +16,8 @@ import java.util.List;
 
 public class CSVReaderWriter {
 
+    private List<User> list;
+
     public static void main(String[] args) {
         String filePath = "/Users/jordan/Desktop/project50/user.csv";
 
@@ -24,7 +26,8 @@ public class CSVReaderWriter {
 
         System.out.println("starting read user.csv file");
         //CAN COMMENT BACK IN ONCE WE FIGURE OUT READCSV ERROR
-        //readCsv(filePath);
+        List<User> users = new ArrayList<User>();
+        users = readCsv(filePath);
     }
 //===JORDAN ADDED
     /*
@@ -111,7 +114,11 @@ private static List<User> readUsersFromCSV(String fileName) {
         }
     }
 
-    public List<User>readCsv(String filePath) {
+    public CSVReaderWriter(){
+        list = new ArrayList<User>();
+    }
+
+    public static List<User>readCsv(String filePath) {
         BufferedReader reader = null;
         List<User> users = new ArrayList<User>();
         try {
@@ -137,7 +144,7 @@ private static List<User> readUsersFromCSV(String fileName) {
             }
 
             for(User u: users){
-                System.out.printf("ALL FIRST NAMES=%s\n", u.getFirstName());
+                System.out.printf("%s Password= %s\n", u.getId(), u.getPassword());
             }
 
 
