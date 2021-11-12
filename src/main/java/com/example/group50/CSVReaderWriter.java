@@ -67,19 +67,19 @@ private static List<User> readUsersFromCSV(String fileName) {
         List<User> users = new ArrayList<User>();
 
         //create demo Users
-        User user = new User(1,"John","Doe", "JDoe", "Doe1");
+        User user = new User(1,"John","Doe", "JDoe", "Doe1", "10/13/99", "123 Inglewood");
         //user.setId(1);
         //user.setFirstName("John");
       //  user.setLastName("Doe");
         users.add(user);
 
-        user = new User(2,"Jack","Doe", "JDoe" , "Doe23");
+        user = new User(2,"Lauren","Daniel", "LDaniel" , "Doe23", "01/04/84" , "234 Apple lane");
         //user.setId(2);
         //user.setFirstName("Jack");
         //user.setLastName("Doe");
         users.add(user);
 
-        user = new User(3,"Jimmy","Doe" , "JimmyD","JDoe");
+        user = new User(3,"Martha","Zeller" , "MZeller","JDoe", "08/23/02" , "545 Grove st");
         //user.setId(3);
         //user.setFirstName("Jimmy");
         //user.setLastName("Doe");
@@ -89,7 +89,7 @@ private static List<User> readUsersFromCSV(String fileName) {
         try {
             fileWriter = new FileWriter(filePath);
 
-            fileWriter.append("Id, First Name, Last Name, UserName, Password\n");
+            fileWriter.append("Id, First Name, Last Name, UserName, Password, Birthday, Address\n");
             for(User u: users) {
                 fileWriter.append(String.valueOf(u.getId()));
                 fileWriter.append(",");
@@ -100,6 +100,10 @@ private static List<User> readUsersFromCSV(String fileName) {
                 fileWriter.append(u.getUsername());
                 fileWriter.append(",");
                 fileWriter.append(u.getPassword());
+                fileWriter.append(",");
+                fileWriter.append(u.getBirthday());
+                fileWriter.append(",");
+                fileWriter.append(u.getAddress());
                 fileWriter.append("\n");
             }
         } catch (Exception ex) {
@@ -118,6 +122,51 @@ private static List<User> readUsersFromCSV(String fileName) {
         list = new ArrayList<User>();
     }
 
+    public static void addtoCsv(String filePath,String usern, String pass, String fname, String lname, String birth, String address ) {
+
+        List<User> users = new ArrayList<User>();
+
+        //add user to list
+        //RANDOM NUMBER FOR ID, NEED TO FIGURE OUT A WAY TO ENSURE NO DUPLICATES**
+        int random = (int)Math.floor(Math.random()*(999-1+1)+1);
+        User user = new User(random,fname,lname, usern, pass, birth, address);
+        users.add(user);
+
+        FileWriter fileWriter = null;
+        try {
+            //append adds to the file instead of destroying it
+            fileWriter = new FileWriter(filePath, true);
+
+            //fileWriter.append("Id, First Name, Last Name, UserName, Password\n");
+            for(User u: users) {
+                fileWriter.append(String.valueOf(u.getId()));
+                fileWriter.append(",");
+                fileWriter.append(u.getFirstName());
+                fileWriter.append(",");
+                fileWriter.append(u.getLastName());
+                fileWriter.append(",");
+                fileWriter.append(u.getUsername());
+                fileWriter.append(",");
+                fileWriter.append(u.getPassword());
+                fileWriter.append(",");
+                fileWriter.append(u.getBirthday());
+                fileWriter.append(",");
+                fileWriter.append(u.getAddress());
+                fileWriter.append("\n");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //we might not need a return type since we are just updating the list
+        //return (users);
+    }
     public static List<User>readCsv(String filePath) {
         BufferedReader reader = null;
         List<User> users = new ArrayList<User>();
@@ -131,7 +180,7 @@ private static List<User> readUsersFromCSV(String fileName) {
                 String[] fields = line.split(",");
 
                 if(fields.length > 0) {
-                    User user = new User(Integer.parseInt(fields[0]),fields[1],fields[2],fields[3],fields[4]);
+                    User user = new User(Integer.parseInt(fields[0]),fields[1],fields[2],fields[3],fields[4], fields[5], fields[6]);
                     //user.setId(Integer.parseInt(fields[0]));
                     //user.setFirstName(fields[1]);
                     //user.setLastName(fields[2]);
