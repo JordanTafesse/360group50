@@ -8,6 +8,7 @@ public class Account {
     private String DateOfBirth;
     private String Password;
     private int Permission;
+
 //
     //CONSTRUCTOR
     Account(String FirstName, String LastName, String Email, String Username, String DateOfBirth, String Password, int Permission){

@@ -121,7 +121,10 @@ public class CreateAccountPane extends VBox
             //adds user if all fields contain text & if username isn't already in the system & if f and l name are registered by the nurse, (STILL NEEDS TO BE IMPLEMENTED)
             if ((user != null) && (pass != null) && (fname != null) && (lname != null) && (birth != null) && (address != null) && (userExist != true) ) {
                 //users = read.addtoCsv(filePath, user, pass, fname, lname, birth, address);
-            read.addtoCsv(filePath, user, pass, fname, lname, birth, address);
+
+                //GOTTA FIGURE OUT A WAY TO ATTACH PATIENT TO THEIR ACCOUNT (THEY ALREADY SHOULD HAVE A PHARMACY AND AGE, BUT ARENT PROMTED IN THIS PANE)
+                //**^^ IMPORTANT
+            read.addtoCsv(filePath, user, pass, fname, lname, birth, address, 0, null, null);
 
             //LEAVE THIS PANE ONCE WE ENTER THIS IF STATEMENT!!!
             }
