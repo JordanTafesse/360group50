@@ -42,7 +42,7 @@ public class AddPatientPane extends VBox
         nameLabel = new Label();
         nameLabel.setText("First Name:\t\t ");
         lnameLabel = new Label();
-        lnameLabel.setText("Lase Name:\t\t ");
+        lnameLabel.setText("Last Name:\t\t ");
 
         addressLabel = new Label();
         addressLabel.setText("Address:\t\t ");
