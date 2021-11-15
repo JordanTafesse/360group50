@@ -107,25 +107,37 @@ public class CreateAccountPane extends VBox
         //Loop to check if username exist in the system=====
             boolean userExist = false;
 
+            boolean isPatient = false;
 
+            int currentID = 0;
+            String Pharmacy = "n/a";
+            int age = 0;
             read = new CSVReaderWriter();
             users = read.readCsv(filePath);
 
             for(User u: users ) {
+                if((fname.equals(u.getFirstName()) == true) && (lname.equals(u.getLastName()) == true) && (u.getAccess() == 0)){
+                    isPatient = true;
+                    currentID = u.getId();
+                    Pharmacy = u.getPharmacy();
+                    age = u.getAge();
+                    System.out.println("Patient EXISTS");
+                }
                 if((user.equals(u.getUsername()) == true)){
                     userExist = true;
                     System.out.println("USER EXISTS");
                 }
+
             }
 
             //adds user if all fields contain text & if username isn't already in the system & if f and l name are registered by the nurse, (STILL NEEDS TO BE IMPLEMENTED)
-            if ((user != null) && (pass != null) && (fname != null) && (lname != null) && (birth != null) && (address != null) && (userExist != true) ) {
+            if ((user != null) && (pass != null) && (fname != null) && (lname != null) && (birth != null) && (address != null) && (userExist != true) && (isPatient == true) && (currentID !=0)) {
                 //users = read.addtoCsv(filePath, user, pass, fname, lname, birth, address);
 
                 //GOTTA FIGURE OUT A WAY TO ATTACH PATIENT TO THEIR ACCOUNT (THEY ALREADY SHOULD HAVE A PHARMACY AND AGE, BUT ARENT PROMTED IN THIS PANE)
                 //**^^ IMPORTANT
-            read.addtoCsv(filePath, user, pass, fname, lname, birth, address, 0, null, null);
-
+            read.updateEntry(filePath,currentID, user, pass, fname, lname, birth, address, 0, Pharmacy, age);
+                //System.out.println("ERROR, Missing fields!");
             //LEAVE THIS PANE ONCE WE ENTER THIS IF STATEMENT!!!
             }
         //}

@@ -28,6 +28,9 @@ public class CSVReaderWriter {
         //CAN COMMENT BACK IN ONCE WE FIGURE OUT READCSV ERROR
         List<User> users = new ArrayList<User>();
         users = readCsv(filePath);
+
+        //updateEntry(filePath,435, "Swonder", "sw3800", "Stevie", "Wonder", "03/21/54", "888 Witchplace", 0, "Walmart", 86);
+        //System.out.println("Updated");
     }
 //===JORDAN ADDED
     /*
@@ -128,6 +131,81 @@ private static List<User> readUsersFromCSV(String fileName) {
         list = new ArrayList<User>();
     }
 
+    public static void updateEntry(String filePath, int id, String usern, String pass, String fname, String lname, String birth, String address , int access, String pharmacy, Integer age) {
+        List<User> users = new ArrayList<User>();
+        CSVReaderWriter read = new CSVReaderWriter();
+        users = read.readCsv(filePath);
+        /*
+        User user = new User(random,fname,lname, usern, pass, birth, address, access, pharmacy, age);
+        users.add(user);
+        */
+
+        FileWriter fileWriter = null;
+        try {
+            //append adds to the file instead of destroying it
+            fileWriter = new FileWriter(filePath, false);
+            fileWriter.append("Id, First Name, Last Name, UserName, Password, Birthday, Address, Access, Pharmacy, Age\n");
+
+            for (User u : users) {
+                System.out.println(u.getId());
+                if(u.getId() == id) {
+                    fileWriter.append(String.valueOf(id));
+                    fileWriter.append(",");
+                    fileWriter.append(fname);
+                    fileWriter.append(",");
+                    fileWriter.append(lname);
+                    fileWriter.append(",");
+                    fileWriter.append(usern);
+                    fileWriter.append(",");
+                    fileWriter.append(pass);
+                    fileWriter.append(",");
+                    fileWriter.append(birth);
+                    fileWriter.append(",");
+                    fileWriter.append(address);
+                    fileWriter.append(",");
+                    fileWriter.append(String.valueOf(access));
+                    fileWriter.append(",");
+                    fileWriter.append(pharmacy);
+                    fileWriter.append(",");
+                    fileWriter.append(String.valueOf(age));
+                    fileWriter.append("\n");
+                }
+                //if the id doesn't match, continue restoring data
+                else{
+                    fileWriter.append(String.valueOf(u.getId()));
+                    fileWriter.append(",");
+                    fileWriter.append(u.getFirstName());
+                    fileWriter.append(",");
+                    fileWriter.append(u.getLastName());
+                    fileWriter.append(",");
+                    fileWriter.append(u.getUsername());
+                    fileWriter.append(",");
+                    fileWriter.append(u.getPassword());
+                    fileWriter.append(",");
+                    fileWriter.append(u.getBirthday());
+                    fileWriter.append(",");
+                    fileWriter.append(u.getAddress());
+                    fileWriter.append(",");
+                    fileWriter.append(String.valueOf(u.getAccess()));
+                    fileWriter.append(",");
+                    fileWriter.append(u.getPharmacy());
+                    fileWriter.append(",");
+                    fileWriter.append(String.valueOf(u.getAge()));
+                    fileWriter.append("\n");
+                }
+            }
+        }
+     catch (Exception ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    }
     public static void addtoCsv(String filePath, String usern, String pass, String fname, String lname, String birth, String address , int access, String pharmacy, Integer age) {
 
         List<User> users = new ArrayList<User>();
