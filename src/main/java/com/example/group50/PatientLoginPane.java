@@ -19,7 +19,7 @@ public class PatientLoginPane extends HBox
     //NEEDS TO BE INCLUDED TO READ .csv
     private CSVReaderWriter read;
     //global variable to track that this is our current user
-    public static String currentUser;
+    public static int currentUser;
 
     private Label welcomeLabel;	// Displays login text
     private Label loginLabel;
@@ -88,7 +88,7 @@ public class PatientLoginPane extends HBox
             for(User u: users ) {
                 if ((user.equals(u.getUsername()) == true) && (pass.equals(u.getPassword()) == true) && (u.getAccess() == 0)) {
                     //System.out.println("YUPPERS");
-                    currentUser = user;
+                    currentUser = u.getId();
                     //cut the loop, CONTINUE TO NEXT PANE
 
                 }

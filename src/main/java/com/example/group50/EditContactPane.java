@@ -84,7 +84,7 @@ public class EditContactPane extends VBox
                     String address = "n/a";
 
                     for (User u : users) {
-                        //if ((PatientLoginPane.currentUser.equals(u.getUsername()) == true)) {
+                        //if ((PatientLoginPane.currentUser.equals(u.getId()) == true)) {
                         if ((tempUser.equals(u.getUsername()) == true)) {   //this one works, but it's just a temp. Above uses global variable of user that is logged in
                             //set fields with currentUser information to be edited
 

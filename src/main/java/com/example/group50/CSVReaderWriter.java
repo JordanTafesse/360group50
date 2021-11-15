@@ -210,10 +210,17 @@ private static List<User> readUsersFromCSV(String fileName) {
 
         List<User> users = new ArrayList<User>();
 
+        List<User> tempList = new ArrayList<User>();
+        CSVReaderWriter read = new CSVReaderWriter();
+        tempList = read.readCsv(filePath);
         //add user to list
         //RANDOM NUMBER FOR ID, NEED TO FIGURE OUT A WAY TO ENSURE NO DUPLICATES**
-        int random = (int)Math.floor(Math.random()*(999-1+1)+1);
-        User user = new User(random,fname,lname, usern, pass, birth, address, access, pharmacy, age);
+        //int random = (int)Math.floor(Math.random()*(999-1+1)+1);
+        int size = tempList.size();
+        User temp = tempList.get(size-1);
+        int tempID = temp.getId();
+        tempID = tempID + 1;
+        User user = new User(tempID,fname,lname, usern, pass, birth, address, access, pharmacy, age);
         users.add(user);
 
         FileWriter fileWriter = null;
