@@ -1,0 +1,7 @@
+Java 15 (version 15.0.2) used for this project
+IDE used: intellij  (other group members used eclipse, final version was composed in intellij with java 15)
+
+
+user.csv needed in project in order to use functions. This is essentially our database.
+(If it is not already found in your project, If you run the main of 'CSVREADERWRITER', it will create the
+.csv file in the correct place).
