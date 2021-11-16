@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,10 @@ public class PatientLoginPane extends HBox
 
     public PatientLoginPane()
     {
+        File file = new File("user.csv");
+        String path = file.getAbsolutePath();
+        String filePath = path;
+
         welcomeLabel = new Label();
         welcomeLabel.setText("Welcome Patient");
         welcomeLabel.setFont(Font.font(32));
@@ -68,7 +73,7 @@ public class PatientLoginPane extends HBox
         createAccountButton.setPrefWidth(180);
 
         //============JORDAN GETTING STRINGS
-        String filePath = "/Users/jordan/Desktop/project50/user.csv";
+        //String filePath = "/Users/jordan/Desktop/project50/user.csv";
 
         loginButton.setOnAction(e -> {
                     String user = String.valueOf(usernameTextField.getText());
@@ -87,7 +92,7 @@ public class PatientLoginPane extends HBox
 
             for(User u: users ) {
                 if ((user.equals(u.getUsername()) == true) && (pass.equals(u.getPassword()) == true) && (u.getAccess() == 0)) {
-                    //System.out.println("YUPPERS");
+                    System.out.println("WELCOME!");
                     currentUser = u.getId();
                     //cut the loop, CONTINUE TO NEXT PANE
 

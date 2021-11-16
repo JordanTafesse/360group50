@@ -3,13 +3,10 @@ package com.example.group50;
 //package CSVreadwrite;
 
 
-import java.io.BufferedReader;
+import java.io.*;
 import java.nio.file.Files;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +14,14 @@ import java.util.List;
 public class CSVReaderWriter {
 
     private List<User> list;
+    public static String path;
 
     public static void main(String[] args) {
-        String filePath = "/Users/jordan/Desktop/project50/user.csv";
+        //String filePath = "/Users/jordan/Desktop/project50/user.csv";
+        File file = new File("user.csv");
+        path = file.getAbsolutePath();
+
+        String filePath = path;
 
         System.out.println("starting write user.csv file: " + filePath);
         writeCsv(filePath);
@@ -86,6 +88,18 @@ private static List<User> readUsersFromCSV(String fileName) {
         //user.setId(3);
         //user.setFirstName("Jimmy");
         //user.setLastName("Doe");
+        users.add(user);
+
+        user = new User(4,"Stevie","Wonder", "SWonder", "sw3899", "03/23/57", "765 S Crossing", 2, "n/a", 67);
+        users.add(user);
+
+        user = new User(5,"Amy","Smucker", "ASumck", "amy123456", "04/04/79", "79 Jumper", 2, "n/a", 41);
+        users.add(user);
+
+        user = new User(6,"Jared","Albertson", "JAlberts", "jalb2933", "06/12/89", "2334 N 75th lane", 1, "n/a", 31);
+        users.add(user);
+
+        user = new User(7,"Tony","Montana", "TMontana", "tm21montana", "06/13/84", "98 E Bracket", 1, "n/a", 36);
         users.add(user);
 
         FileWriter fileWriter = null;

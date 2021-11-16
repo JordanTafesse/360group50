@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,9 @@ public class CreateAccountPane extends VBox
     public CreateAccountPane()
     {
 
+        File file = new File("user.csv");
+        String path = file.getAbsolutePath();
+        String filePath = path;
 
         createLabel = new Label("Create New Account");
         createLabel.setFont(Font.font(32));
@@ -82,7 +86,7 @@ public class CreateAccountPane extends VBox
 
         //==========JORDAN ADDED
 
-        String filePath = "/Users/jordan/Desktop/project50/user.csv";
+        //String filePath = "/Users/jordan/Desktop/project50/user.csv";
 
         createButton.setOnAction(e -> {
 

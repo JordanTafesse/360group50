@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class EditContactPane extends VBox
     //NEEDS TO BE INCLUDED TO READ .csv
     //may need to make these global variables
     private CSVReaderWriter read;
-    String filePath = "/Users/jordan/Desktop/project50/user.csv";
+    //String filePath = "/Users/jordan/Desktop/project50/user.csv";
+    String filePath = CSVReaderWriter.path;
 
     private Label editLabel;
 
@@ -42,6 +44,10 @@ public class EditContactPane extends VBox
 
     public EditContactPane()
     {
+
+        File file = new File("user.csv");
+        String path = file.getAbsolutePath();
+        String filePath = path;
 
         editLabel = new Label("Edit Contact Information");
         editLabel.setFont(Font.font(32));
@@ -74,7 +80,7 @@ public class EditContactPane extends VBox
                     read = new CSVReaderWriter();
                     users = read.readCsv(filePath);
 
-                    String tempUser = "JDoe";
+                    int tempUser = 1;
 
                     String user = "n/a";
                     String pass = "n/a";
@@ -84,8 +90,8 @@ public class EditContactPane extends VBox
                     String address = "n/a";
 
                     for (User u : users) {
-                        //if ((PatientLoginPane.currentUser.equals(u.getId()) == true)) {
-                        if ((tempUser.equals(u.getUsername()) == true)) {   //this one works, but it's just a temp. Above uses global variable of user that is logged in
+                        //if ((PatientLoginPane.currentUser == u.getId()) {
+                        if ((tempUser == u.getId())) {   //this one works, but it's just a temp. Above uses global variable of user that is logged in
                             //set fields with currentUser information to be edited
 
 

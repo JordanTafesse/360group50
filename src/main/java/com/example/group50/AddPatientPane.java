@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class AddPatientPane extends VBox
 
     public AddPatientPane()
     {
+
+        File file = new File("user.csv");
+        String path = file.getAbsolutePath();
+        String filePath = path;
 
         addPatientLabel = new Label();
         addPatientLabel.setText("Add New Patient");
@@ -90,7 +95,7 @@ public class AddPatientPane extends VBox
 
         //==========JORDAN ADDED
 
-        String filePath = "/Users/jordan/Desktop/project50/user.csv";
+        //String filePath = "/Users/jordan/Desktop/project50/user.csv";
 
         addButton.setOnAction(e -> {
 
